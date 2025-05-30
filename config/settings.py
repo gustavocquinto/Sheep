@@ -5,4 +5,5 @@ timeoutWait = 2
 
 debug_development = False
 
-driver_path = 'C:/WebDrivers/chromedriver.exe'
+##driver_path = 'C:/WebDrivers/chromedriver.exe'
+driver_path = '/usr/local/bin/chromedriver'

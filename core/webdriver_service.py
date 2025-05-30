@@ -1,4 +1,4 @@
-from config import *
+from config.settings import *
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -14,6 +14,7 @@ class WebDriverService():
         self.url_app = url_app
 
         self.driver = webdriver.Chrome(service=serviceDriver_path)
+        self.driver.maximize_window()
 
         self.wait = WebDriverWait(self.driver, timeoutWait)
 

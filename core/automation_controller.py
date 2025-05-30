@@ -1,8 +1,8 @@
 import selenium
-from WebDriverService import WebDriverService
+from core.webdriver_service import WebDriverService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from ExceptionHandler import ExceptionHandler
+from core.exception_handler import ExceptionHandler
 
 
 class AutomationController:
