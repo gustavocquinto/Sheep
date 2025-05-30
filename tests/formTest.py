@@ -1,5 +1,6 @@
-from AutomationController import AutomationController
-from config import *
+from core.automation_controller import AutomationController
+from config.settings import *
+from utils.data_provider import DataProvider
 from time import *
 import random
 class FormTest:
@@ -8,7 +9,9 @@ class FormTest:
         self.cmd.acessaSite(url_app)
 
     def preencheFormularioCorretamente(self):
-        self.cmd.buscaElemento("firstName", "id").preencher("Gustavo")
+        self.pessoa = DataProvider()
+
+        self.cmd.buscaElemento(F"{}", "id").preencher("Gustavo")
         
         self.cmd.buscaElemento("lastName", "id").preencher("Quinto")
 

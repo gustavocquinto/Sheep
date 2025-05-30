@@ -1,5 +1,5 @@
-from AutomationController import AutomationController
-from formTest import FormTest
+from core.automation_controller import AutomationController
+from tests.formTest import FormTest
 
 def main():
     formTest = FormTest()
