@@ -1,9 +1,7 @@
-from classes.pessoa_class import Pessoa
+from utils.classes.pessoa_class import Pessoa
 class DataProvider():
 
     def __init__(self):
-        self.faker = Faker()
-        return True
-    
+        return None
     def Pessoa(self):
-        return Pessoa
+        return Pessoa()
