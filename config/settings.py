@@ -1,12 +1,16 @@
 ##Configurações para execução de automações
+#------------------------------------------
 
-#Driver
+
+#Driver settings:
 url_app = 'https://demoqa.com/automation-practice-form'
 timeoutWait = 2
-##driver_path = 'C:/WebDrivers/chromedriver.exe' # Windows 
-driver_path = '/usr/local/bin/chromedriver' # Linux - "which chromedriver" para informar encontrar o diretório
+#driver_path = 'C:/WebDrivers/chromedriver.exe' # Windows 
+driver_path = '/usr/local/bin/chromedriver' # Linux - "which chromedriver" para encontrar o diretório
 
-#Environment
+
+#------------------------------------
+#Ambiente de desenvolvimento:
 debug_development = True
-debug_log_path = '/Sheep/'
+debug_log_path = ''
 
