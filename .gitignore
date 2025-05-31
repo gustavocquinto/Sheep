@@ -1,0 +1,6 @@
+#Cache python
+__pycache__
+
+#Arquivos de log
+*.log
+*.zip
