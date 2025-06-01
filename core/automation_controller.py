@@ -53,4 +53,10 @@ class AutomationController:
         self.navegador.get(url)
 
         return self
+    
+    @ExceptionHandler.trata_erros
+    def validar_valor_elemento(self, objeto):
+
+        for elemento_slm, valor_esperado in objeto.items():
+            self.total += 1
 
