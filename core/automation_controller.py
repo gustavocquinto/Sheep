@@ -2,22 +2,23 @@ from core.autoload import Asserts, Logger, ExceptionHandler, WebDriverService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
-from core.exception_handler import ExceptionHandler
-from core.logger import Logger
+
 
 class AutomationController:
 
     def __init__(self):
         self.webdriver = WebDriverService()
-        self.logger = Logger()
+        self.asserts = Asserts()
 
         self.navegador = self.webdriver.driver
         
         self.wait = self.webdriver.wait
 
+        
+
     @ExceptionHandler.trata_erros
-    def buscaElemento(self, elemento='firstName', seletor='id'):
-        self.logger.info_log(f"Buscando elemento {elemento}, com seletor tipo: {seletor}...")
+    def buscar_elemento(self, elemento='firstName', seletor='id'):
+        Logger().info_log(f"Buscando elemento {elemento}, com seletor tipo: {seletor}...")
         seletor_tipo = seletor.lower()
         
         if seletor_tipo == 'xpath':
@@ -54,8 +55,14 @@ class AutomationController:
         return self
     
     @ExceptionHandler.trata_erros
-    def validar_valor_elemento(self, objeto):
+    def validar(self, valor_esperado):
+        valor_salvo = self.get_element_value(self.elemento)
+        self.asserts.checar(valor_esperado, valor_salvo)
 
-        for elemento_slm, valor_esperado in objeto.items():
-            self.total += 1
-
+    def get_element_value(self, elemento):
+        
+        tag = elemento.tag_name.lower()
+        if tag in ['input', 'textarea', 'select']:
+            return elemento.get_attribute('value')
+        else:
+            return elemento.text

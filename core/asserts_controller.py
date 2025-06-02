@@ -1,4 +1,4 @@
-from core.autoload import Logger
+from core.logger import Logger
 class Asserts():
     
     def __init__(self):
