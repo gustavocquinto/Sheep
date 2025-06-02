@@ -1,5 +1,6 @@
 from selenium.common.exceptions import *
 from colorama import init, Fore, Style
+from core.autoload import Logger
 
 class ExceptionHandler():
 

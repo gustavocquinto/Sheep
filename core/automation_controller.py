@@ -1,5 +1,4 @@
-import selenium
-from core.webdriver_service import WebDriverService
+from core.autoload import Asserts, Logger, ExceptionHandler, WebDriverService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC

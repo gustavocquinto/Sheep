@@ -1,4 +1,4 @@
-from core.automation_controller import AutomationController
+from core.autoload import AutomationController
 from tests.formTest import FormTest
 
 def main():
