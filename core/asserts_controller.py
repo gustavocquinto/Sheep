@@ -33,12 +33,13 @@ class Asserts():
         func.write(f"<html> <head> <title> teste </title> </head> <body> {html}  <html>")
 
     def checar (self, valor_enviado, valor_salvo):
-        Logger.info_log(f"Verificando sucesso, valor/string enviada: {valor_enviado} valor salvo: {valor_salvo}")
+        Logger.info_log(f"[ASSERT] Verificando sucesso, valor/string enviada: {valor_enviado} valor salvo: {valor_salvo}")
         self.asserts_total += 1 
         try:
-            assert valor_enviado == valor_salvo, f"Falha: {valor_enviado} != {valor_salvo}"
+            assert valor_enviado == valor_salvo, f"[ASSERT] Falha: {valor_enviado} != {valor_salvo}"
             self.sucessos += 1
+            print(f"Total de asserts: {self.asserts_total}, sucesso: {self.sucessos}, falhas: {self.falhas}" )     
         except AssertionError as e:
             self.falhas += 1
-            Logger.error_log(str(e))
+            Logger.warning_log(e)
             

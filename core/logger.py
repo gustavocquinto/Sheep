@@ -17,9 +17,14 @@ class Logger():
     @staticmethod 
     def info_log(mensagem):
         print()
-        logging.info(mensagem)
+        logging.info(f"{mensagem} \n")
 
     @staticmethod
     def error_log(mensagem):
         print()
-        logging.error(mensagem)
+        logging.error(f"{mensagem} \n")
+
+    @staticmethod
+    def warning_log(mensagem):
+        print()
+        logging.warning(f"{mensagem} \n")
