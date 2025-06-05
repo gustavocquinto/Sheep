@@ -13,6 +13,18 @@ class Logger():
             logging.basicConfig(filename=f'{log_dir}debugging{log_date}.log', level=logging.DEBUG)
         else:
             logging.basicConfig(level=logging.INFO)
-    
-    def info_log(self, mensagem):
-        logging.info(mensagem)
+
+    @staticmethod 
+    def info_log(mensagem):
+        print()
+        logging.info(f"{mensagem} \n")
+
+    @staticmethod
+    def error_log(mensagem):
+        print()
+        logging.error(f"{mensagem} \n")
+
+    @staticmethod
+    def warning_log(mensagem):
+        print()
+        logging.warning(f"{mensagem} \n")

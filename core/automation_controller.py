@@ -1,24 +1,24 @@
-import selenium
-from core.webdriver_service import WebDriverService
+from core.autoload import Asserts, Logger, ExceptionHandler, WebDriverService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
-from core.exception_handler import ExceptionHandler
-from core.logger import Logger
+
 
 class AutomationController:
 
     def __init__(self):
         self.webdriver = WebDriverService()
-        self.logger = Logger()
+        self.asserts = Asserts()
 
         self.navegador = self.webdriver.driver
         
         self.wait = self.webdriver.wait
 
+        
+
     @ExceptionHandler.trata_erros
-    def buscaElemento(self, elemento='firstName', seletor='id'):
-        self.logger.info_log(f"Buscando elemento {elemento}, com seletor tipo: {seletor}...")
+    def buscar_elemento(self, elemento='firstName', seletor='id'):
+        Logger().info_log(f"Buscando elemento {elemento}, com seletor tipo: {seletor}...")
         seletor_tipo = seletor.lower()
         
         if seletor_tipo == 'xpath':
@@ -30,9 +30,23 @@ class AutomationController:
         elif seletor_tipo == 'css_selector':
             self.elemento = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, elemento)))
 
+        elif seletor_tipo == 'class_name':
+            self.elemento = self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, elemento)))
+        elif seletor_tipo == 'tag_name':
+            self.elemento = self.wait.until(EC.presence_of_element_located((By.TAG_NAME, elemento)))
+
         #Certifico que estou retornando elemento visível
         self.navegador.execute_script("arguments[0].scrollIntoView();", self.elemento)
 
+        return self
+    
+    @ExceptionHandler.trata_erros
+    def buscar_elementos(self, elemento='SecondName', seletor='id'):
+        Logger().info_log(f"Buscando múltiplos elementos {elemento}, com seletor tipo: {seletor}...")
+
+        if seletor == 'tag_name':
+            self.elementos = self.elemento.find_elements(By.TAG_NAME, elemento)
+            
         return self
     
     @ExceptionHandler.trata_erros
@@ -53,4 +67,26 @@ class AutomationController:
         self.navegador.get(url)
 
         return self
+    
+    @ExceptionHandler.trata_erros
+    def validar(self, valor_esperado):
+        valor_salvo = self.get_element_value(self.elemento)
+        self.asserts.checar(valor_esperado, valor_salvo)
 
+    def get_element_value(self, elemento):
+        
+        tag = elemento.tag_name.lower()
+        if tag in ['input', 'textarea', 'select']:
+            return elemento.get_attribute('value')
+        else:
+            return elemento.text
+        
+    @ExceptionHandler.trata_erros    
+    def buscar_feedback(self, elemento='Pop-up sucess', seletor='id'):
+        self.elemento = self.buscar_elemento(elemento, seletor)
+        if (self.elemento):
+            Logger().info_log('Elemento de feedback encontrado com sucesso')
+            return self
+        else:
+            return False
+        
