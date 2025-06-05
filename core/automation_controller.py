@@ -30,9 +30,23 @@ class AutomationController:
         elif seletor_tipo == 'css_selector':
             self.elemento = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, elemento)))
 
+        elif seletor_tipo == 'class_name':
+            self.elemento = self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, elemento)))
+        elif seletor_tipo == 'tag_name':
+            self.elemento = self.wait.until(EC.presence_of_element_located((By.TAG_NAME, elemento)))
+
         #Certifico que estou retornando elemento visível
         self.navegador.execute_script("arguments[0].scrollIntoView();", self.elemento)
 
+        return self
+    
+    @ExceptionHandler.trata_erros
+    def buscar_elementos(self, elemento='SecondName', seletor='id'):
+        Logger().info_log(f"Buscando múltiplos elementos {elemento}, com seletor tipo: {seletor}...")
+
+        if seletor == 'tag_name':
+            self.elementos = self.elemento.find_elements(By.TAG_NAME, elemento)
+            
         return self
     
     @ExceptionHandler.trata_erros
@@ -66,3 +80,13 @@ class AutomationController:
             return elemento.get_attribute('value')
         else:
             return elemento.text
+        
+    @ExceptionHandler.trata_erros    
+    def buscar_feedback(self, elemento='Pop-up sucess', seletor='id'):
+        self.elemento = self.buscar_elemento(elemento, seletor)
+        if (self.elemento):
+            Logger().info_log('Elemento de feedback encontrado com sucesso')
+            return self
+        else:
+            return False
+        
