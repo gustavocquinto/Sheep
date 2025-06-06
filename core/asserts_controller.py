@@ -35,11 +35,16 @@ class Asserts():
     def checar (self, valor_enviado, valor_salvo):
         Logger.info_log(f"[ASSERT] Verificando sucesso, valor/string enviada: {valor_enviado} valor salvo: {valor_salvo}")
         self.asserts_total += 1 
+        valor_salvo_formatado = str(valor_salvo).replace("\n", " ").strip()
+        valor_enviado_formatado = valor_enviado.strip()
         try:
-            assert valor_enviado == valor_salvo, f"[ASSERT] Falha: {valor_enviado} != {valor_salvo}"
-            self.sucessos += 1
-            print(f"Total de asserts: {self.asserts_total}, sucesso: {self.sucessos}, falhas: {self.falhas}" )     
+            assert valor_enviado_formatado == valor_salvo_formatado, f"[ASSERT] Falha: valor_enviado -> {valor_enviado} != valor_salvo -> {valor_salvo}"
+            Logger.info_log("[ASSERT] ✔️ Validação concluída.")
+            self.sucessos += 1     
         except AssertionError as e:
             self.falhas += 1
             Logger.warning_log(e)
-            
+            return False
+    
+    def relatorio_asserts_provisorio(self):
+        print(f"Total de asserts: {self.asserts_total}, sucesso: {self.sucessos}, falhas: {self.falhas}" )
