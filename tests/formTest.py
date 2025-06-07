@@ -34,6 +34,10 @@ class FormTest:
 
         self.cmd.buscar_elemento(f"userNumber", "id").preencher(f"{self.pessoa.telefone}")
 
+        self.cmd.buscar_elemento(f"dateOfBirthInput", "id").clicar()
+        self.cmd.buscar_elemento(f'react-datepicker__day--001', 'class_name').clicar()
+        self.cmd.buscar_elemento(f"dateOfBirthInput", "id").get_atributo_valor()
+
         self.cmd.buscar_elemento(f"subjectsInput", "id").preencher(f"Computer Science").teclaEnter()
 
         randomico = randomico
@@ -42,32 +46,35 @@ class FormTest:
 
         self.cmd.buscar_elemento(f'currentAddress', 'id').preencher(f'{self.empresa.endereco}')
 
-        self.state_options = ['NCR', 'Uttar Pradesh', 'Haryana', 'Rajasthan']
+        self.state_options = ['NCR']
         randomico = random.randint(0, len(self.state_options) - 1)
         self.state = self.state_options[randomico]
         self.state_input = self.cmd.buscar_elemento(f'state', 'id')
         self.state_input.clicar()
         self.cmd.buscar_elemento('react-select-3-input', 'id').preencher(f'{self.state}').teclaEnter()
 
+        sleep(2)
+
         self.city_options = ['Delhi', 'Gurgaon', 'Noida']
         randomico = random.randint(0, len(self.city_options) - 1)
         self.city = self.city_options[randomico]
-        self.cmd.buscar_elemento('react-select-4-input', 'id').preencher(f'{self.city}')
+        self.cmd.buscar_elemento('react-select-4-input', 'id').preencher(f'{self.city}').teclaEnter()
     
+
+        sleep(2)
+
         self.cmd.buscar_elemento('submit', 'id').clicar()
 
+        
 
         self.nome_completo = self.pessoa.nome + " " + self.pessoa.sobrenome
         self.city_state = self.state + " " + self.city
-        self.array = [self.nome_completo, self.pessoa.email, genero, self.pessoa.telefone, 'Date of birth', 'Computer Science', hobbies, 'Picture', self.empresa.endereco, self.city_state]
+        print("ESTADO: " + self.city_state)
+        self.dados_tabela = [self.nome_completo, self.pessoa.email, genero, self.pessoa.telefone, 'Date of birth', 'Computer Science', hobbies, '', self.empresa.endereco, self.city_state]
 
-        formValidator(self.cmd).validar_preenchimento_formulario(self.array)
-        #from validators.form_validator import formValidator
-        #formValidator(self).validar_preenchimento_formulario()
-            
+        formValidator(self.cmd).validar_preenchimento_formulario(self.dados_tabela)
 
-       # self.formValidator.validar_preenchimento_formulario(self.dados)
-        sleep(10)
+        sleep(20)
 
 
     def campos_obrigatorios(self):

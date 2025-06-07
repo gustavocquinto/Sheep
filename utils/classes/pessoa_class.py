@@ -8,6 +8,6 @@ class Pessoa():
         self.genero = random.choice(['homem, mulher, outro'])
         self.email=faker.email()
         self.cpf=faker.cpf()
-        self.telefone=random.randint(1000000000, 9999999999)
+        self.telefone=str(random.randint(1000000000, 9999999999))
         self.endereco=faker.address()
 

@@ -48,8 +48,11 @@ class AutomationController:
     def buscar_elementos(self, elemento='SecondName', seletor='id'):
         Logger().info_log(f"Buscando múltiplos elementos {elemento}, com seletor tipo: {seletor}...")
 
+        seletor = seletor.lower()
         if seletor == 'tag_name':
             self.elementos = self.elemento.find_elements(By.TAG_NAME, elemento)
+        elif seletor == 'css_selector':
+            self.elementos = self.elemento.find_elements(By.CSS_SELECTOR, elemento)
             
         return self
     

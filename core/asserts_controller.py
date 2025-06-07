@@ -36,7 +36,7 @@ class Asserts():
         Logger.info_log(f"[ASSERT] Verificando sucesso, valor/string enviada: {valor_enviado} valor salvo: {valor_salvo}")
         self.asserts_total += 1 
         valor_salvo_formatado = str(valor_salvo).replace("\n", " ").strip()
-        valor_enviado_formatado = valor_enviado.strip()
+        valor_enviado_formatado = str(valor_enviado).replace("\n", " ").strip()
         try:
             assert valor_enviado_formatado == valor_salvo_formatado, f"[ASSERT] Falha: valor_enviado -> {valor_enviado} != valor_salvo -> {valor_salvo}"
             Logger.info_log("[ASSERT] ✔️ Validação concluída.")

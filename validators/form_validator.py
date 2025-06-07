@@ -19,7 +19,7 @@ class formValidator():
 
         for i, linha in enumerate(linhas_tabela):
             colunas = linha.find_elements(By.TAG_NAME, 'td')
-            coluna = colunas[1].text 
-            self.asserts.checar(coluna, dados[i])
+            coluna = colunas[1].text
+            self.asserts.checar(dados[i], coluna)
 
-        self.asserts.relatorio_asserts_provisorio()    
+        self.asserts.relatorio_asserts_provisorio()
