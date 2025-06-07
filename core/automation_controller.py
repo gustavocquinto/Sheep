@@ -41,16 +41,24 @@ class AutomationController:
         return self
     
     @ExceptionHandler.trata_erros
+    def texto(self):
+        return self.elemento.text
+    
+    @ExceptionHandler.trata_erros
     def buscar_elementos(self, elemento='SecondName', seletor='id'):
         Logger().info_log(f"Buscando múltiplos elementos {elemento}, com seletor tipo: {seletor}...")
 
+        seletor = seletor.lower()
         if seletor == 'tag_name':
             self.elementos = self.elemento.find_elements(By.TAG_NAME, elemento)
+        elif seletor == 'css_selector':
+            self.elementos = self.elemento.find_elements(By.CSS_SELECTOR, elemento)
             
         return self
     
     @ExceptionHandler.trata_erros
     def preencher(self, string="texto"):
+        Logger().info_log(f"Preenchendo campo com string: {string}")
         self.elemento.send_keys(string)
         return self
 
@@ -68,18 +76,13 @@ class AutomationController:
 
         return self
     
-    @ExceptionHandler.trata_erros
-    def validar(self, valor_esperado):
-        valor_salvo = self.get_element_value(self.elemento)
-        self.asserts.checar(valor_esperado, valor_salvo)
-
-    def get_element_value(self, elemento):
+    def get_atributo_valor(self):
         
-        tag = elemento.tag_name.lower()
+        tag = self.elemento.tag_name.lower()
         if tag in ['input', 'textarea', 'select']:
-            return elemento.get_attribute('value')
+            return self.elemento.get_attribute('value')
         else:
-            return elemento.text
+            return self.elemento.text
         
     @ExceptionHandler.trata_erros    
     def buscar_feedback(self, elemento='Pop-up sucess', seletor='id'):
@@ -89,4 +92,8 @@ class AutomationController:
             return self
         else:
             return False
+        
+    def is_required(self):
+        if (self.elemento.get_attribute('required')):
+            return True
         
