@@ -14,42 +14,42 @@ class ExceptionHandler():
                 return func(*args, **kwargs)
             
             except (NoSuchElementException, TimeoutException) as e:
-                Logger.error_log(f"Elemento não encontrado ou tempo excedido, função: {nome_funcao}, exception")
+                Logger.error_log(f"Elemento não encontrado ou tempo excedido, função: {nome_funcao}")
                 print(e)
                 exit()
                 
             except ElementClickInterceptedException as e:
-                Logger.error_log(f"Elemento interceptado, não foi possivel clicar. Outro elemento receberia o click")
+                Logger.error_log(f"Elemento interceptado, não foi possivel clicar. Outro elemento receberia o click. Função: {nome_funcao}")
                 print(e)
 
             except KeyboardInterrupt as e:
-                Logger.warning_log(f"Execução de script interrompida pelo teclado.")
+                Logger.warning_log(f"Execução de script interrompida pelo teclado.Função: {nome_funcao}")
                 print(e)
                 exit()
             
             except NoSuchWindowException as e:
-                Logger.error_log(f"Não foi possivel continuar. Verifique se a janela do navegador foi fechada.")
+                Logger.error_log(f"Não foi possivel continuar. Verifique se a janela do navegador foi fechada. Função: {nome_funcao}")
                 exit()
 
             except AttributeError as e:
-                Logger.error_log(f"Não foi possível encontrar o atributo informado")
+                Logger.error_log(f"Não foi possível encontrar o atributo informado Função: {nome_funcao}")
                 print(e)
 
             except (ConnectionError, ConnectionAbortedError, ConnectionRefusedError) as e:
-                Logger.error_log(f"Conexão com o driver do navegador negada ou interrompida. Parece que há um problema ao solicitar ações ao navegador.")
+                Logger.error_log(f"Conexão com o driver do navegador negada ou interrompida. Parece que há um problema ao solicitar ações ao navegador. Função: {nome_funcao}")
                 print(e)
                 exit()
 
             except MaxRetryError as e:
-                Logger.error_log(f"Tentativas Excedidas: Não foi possivel realizar a conexão com o driver do navegador. Por favor, confirme as configurações e disponibilidade do driver.")
+                Logger.error_log(f"Tentativas Excedidas: Não foi possivel realizar a conexão com o driver do navegador. Por favor, confirme as configurações e disponibilidade do driver. Função: {nome_funcao}")
                 exit()
 
             except NewConnectionError as e:
-                Logger.error_log(f" Não foi possivel realizar a conexão com o driver do navegador. Por favor, confirme as configurações e disponibilidade do driver.")
+                Logger.error_log(f" Não foi possivel realizar a conexão com o driver do navegador. Por favor, confirme as configurações e disponibilidade do driver. Função: {nome_funcao}")
                 exit()
 
             except Exception as e:
-                Logger.error_log(f"A execução foi interrompida. Não foi possível identificar uma exceção respectiva para tratamento.")
+                Logger.error_log(f"A execução foi interrompida. Não foi possível identificar uma exceção respectiva para tratamento. Função: {nome_funcao}")
                 print(e)
             ##except Exception as e:
                 ##print(f"[ERRO] Função {nome_funcao} : {e}")
