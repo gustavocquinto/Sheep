@@ -3,7 +3,8 @@ from tests.formTest import FormTest
 
 def main():
     formTest = FormTest()
-    formTest.preencher_formulario_corretamente()
+    formTest.runner()
+
 
 if __name__ == "__main__":
     main()

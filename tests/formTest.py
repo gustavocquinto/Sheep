@@ -10,13 +10,18 @@ class FormTest:
     def __init__(self):
         self.cmd = AutomationController()
         self.data_provider = DataProvider()
-        #self.formValidator = formValidator()
         self.dados = []
         self.cmd.acessaSite(url_app)
 
-    def preencher_formulario_corretamente(self):
-        nome = self.preencher_formulario_corretamente.__qualname__
-        Logger().info_log(f"Iniciando teste...{nome}")
+    def runner(self):
+        Logger().info_log(f"Executando classe de teste: {self.__class__.__name__}")
+
+        self.test_preencher_formulario_corretamente()
+        self.campos_obrigatorios()
+
+    def test_preencher_formulario_corretamente(self):
+        nome = self.test_preencher_formulario_corretamente.__qualname__
+        Logger().info_log(f"Iniciando {nome}")
 
         self.pessoa = self.data_provider.Pessoa()
         self.empresa = self.data_provider.Empresa()
@@ -53,19 +58,12 @@ class FormTest:
         self.state_input.clicar()
         self.cmd.buscar_elemento('react-select-3-input', 'id').preencher(f'{self.state}').teclaEnter()
 
-        sleep(2)
-
         self.city_options = ['Delhi', 'Gurgaon', 'Noida']
         randomico = random.randint(0, len(self.city_options) - 1)
         self.city = self.city_options[randomico]
         self.cmd.buscar_elemento('react-select-4-input', 'id').preencher(f'{self.city}').teclaEnter()
     
-
-        sleep(2)
-
         self.cmd.buscar_elemento('submit', 'id').clicar()
-
-        
 
         self.nome_completo = self.pessoa.nome + " " + self.pessoa.sobrenome
         self.city_state = self.state + " " + self.city
@@ -74,10 +72,8 @@ class FormTest:
 
         formValidator(self.cmd).validar_preenchimento_formulario(self.dados_tabela)
 
-        sleep(20)
-
-
+        self.cmd.atualizar_pagina()
     def campos_obrigatorios(self):
         self.cmd.buscar_elemento('submit', 'id').clicar()
 
-        print (self.cmd.buscar_elemento(f"firstName", "id").is_required() )
+        Logger().info_log(self.cmd.buscar_elemento(f"firstName", "id").is_required() )

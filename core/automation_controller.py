@@ -93,7 +93,12 @@ class AutomationController:
         else:
             return False
         
+    @ExceptionHandler.trata_erros
     def is_required(self):
         if (self.elemento.get_attribute('required')):
             return True
         
+    @ExceptionHandler.trata_erros
+    def atualizar_pagina(self):
+        self.navegador.refresh()
+        return None 

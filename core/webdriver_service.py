@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 
 
 class WebDriverService():
@@ -12,7 +13,11 @@ class WebDriverService():
 
         self.url_app = url_app
 
-        self.driver = webdriver.Chrome(service=serviceDriver_path)
+        self.options = Options()
+        self.options.add_experimental_option("detach", True)
+
+        self.driver = webdriver.Chrome(service=serviceDriver_path, options=self.options)
+
         self.driver.maximize_window()
 
         self.wait = WebDriverWait(self.driver, timeoutWait)
