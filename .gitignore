@@ -4,3 +4,6 @@ __pycache__
 #Arquivos de log
 *.log
 *.zip
+
+#Relatórios
+*.html
