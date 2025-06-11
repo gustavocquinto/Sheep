@@ -22,4 +22,4 @@ class formValidator():
             coluna = colunas[1].text
             self.asserts.checar(dados[i], coluna)
 
-        self.asserts.relatorio_asserts_provisorio()
+        self.asserts.relatorio_asserts()

@@ -9,9 +9,10 @@ class Asserts():
 
 
     def relatorio_asserts(self):
+        Logger.info_log("[ASSERTS]: Gerando raw HTML para conferência de asserts")
         func = open("relatorio.html", "w")
 
-        html = """
+        html = f"""
         <h1>Relat&oacute;rio de execu&ccedil;&atilde;o de testes - beta</h1>
         <div>
             <table>
@@ -22,15 +23,15 @@ class Asserts():
             <th>Testes totais</th>
             </tr>
             <tr>
-            <td>2</td>
-            <td>2</td>
-            <td>4</td>
+            <td>{self.sucessos}</td>
+            <td>{self.falhas}</td>
+            <td>{self.asserts_total}</td>
             </tr>
             </tbody>
             </table>
             </div>
             """
-        func.write(f"<html> <head> <title> teste </title> </head> <body> {html}  <html>")
+        func.write(f"<html> <head> <title> teste </title> </head> <body> {html}  </body> </html>")
 
     def checar (self, valor_enviado, valor_salvo):
         Logger.info_log(f"[ASSERT] Verificando sucesso, valor/string enviada: {valor_enviado} valor salvo: {valor_salvo}")
