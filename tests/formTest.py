@@ -71,8 +71,8 @@ class FormTest:
         self.dados_tabela = [self.nome_completo, self.pessoa.email, genero, self.pessoa.telefone, 'Date of birth', 'Computer Science', hobbies, '', self.empresa.endereco, self.city_state]
 
         formValidator(self.cmd).validar_preenchimento_formulario(self.dados_tabela)
-
         self.cmd.atualizar_pagina()
+
     def campos_obrigatorios(self):
         self.cmd.buscar_elemento('submit', 'id').clicar()
 

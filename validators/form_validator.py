@@ -22,4 +22,4 @@ class formValidator():
             coluna = colunas[1].text
             self.asserts.checar(dados[i], coluna)
 
-        self.asserts.relatorio_asserts()
+        self.asserts.relatorio_asserts(self.validar_preenchimento_formulario.__qualname__)
