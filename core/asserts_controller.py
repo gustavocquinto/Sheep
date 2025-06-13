@@ -1,4 +1,5 @@
 from core.logger import Logger
+from core.html_controller import HTML
 class Asserts():
     
     def __init__(self):
@@ -8,30 +9,11 @@ class Asserts():
         return None
 
 
-    def relatorio_asserts(self):
-        Logger.info_log("[ASSERTS]: Gerando raw HTML para conferência de asserts")
-        func = open("relatorio.html", "w")
+    def relatorio_asserts(self, nome_relatorio="test_form"):
+       self.html = HTML()
+       self.html.gera_e_insere_relatorio(self, nome_relatorio)
 
-        html = f"""
-        <h1>Relat&oacute;rio de execu&ccedil;&atilde;o de testes - beta</h1>
-        <div>
-            <table>
-            <tbody>
-            <tr>
-            <th>Sucessos</th>
-            <th>Erros</th>
-            <th>Testes totais</th>
-            </tr>
-            <tr>
-            <td>{self.sucessos}</td>
-            <td>{self.falhas}</td>
-            <td>{self.asserts_total}</td>
-            </tr>
-            </tbody>
-            </table>
-            </div>
-            """
-        func.write(f"<html> <head> <title> teste </title> </head> <body> {html}  </body> </html>")
+       return None
 
     def checar (self, valor_enviado, valor_salvo):
         Logger.info_log(f"[ASSERT] Verificando sucesso, valor/string enviada: {valor_enviado} valor salvo: {valor_salvo}")
@@ -46,6 +28,3 @@ class Asserts():
             self.falhas += 1
             Logger.warning_log(e)
             return False
-    
-    def relatorio_asserts_provisorio(self):
-        print(f"Total de asserts: {self.asserts_total}, sucesso: {self.sucessos}, falhas: {self.falhas}" )

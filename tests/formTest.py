@@ -74,8 +74,6 @@ class FormTest:
 
         formValidator(self.cmd).validar_preenchimento_formulario(self.dados_tabela)
 
-        sleep(20)
-
 
     def campos_obrigatorios(self):
         self.cmd.buscar_elemento('submit', 'id').clicar()
