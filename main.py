@@ -6,8 +6,8 @@ def main():
     HTML().html_header()
 
     formTest = FormTest()
-    formTest.preencher_formulario_corretamente()
-    #formTest.campos_obrigatorios()
+    formTest.runner()
+
 
     HTML().fecha_html()
 
