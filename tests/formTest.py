@@ -12,12 +12,13 @@ class FormTest:
         self.data_provider = DataProvider()
         self.dados = []
         self.cmd.acessaSite(url_app)
+        self.runner()
 
     def runner(self):
         Logger().info_log(f"Executando classe de teste: {self.__class__.__name__}")
 
         self.test_preencher_formulario_corretamente()
-        self.campos_obrigatorios()
+        self.test_campos_obrigatorios()
 
     def test_preencher_formulario_corretamente(self):
         nome = self.test_preencher_formulario_corretamente.__qualname__
