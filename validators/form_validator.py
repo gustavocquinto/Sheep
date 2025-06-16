@@ -22,3 +22,11 @@ class formValidator():
             self.asserts.checar(dados[i], coluna)
 
         self.asserts.relatorio_asserts(self.validar_preenchimento_formulario.__qualname__)
+
+    def validar_campos_obrigatorios(self):
+
+        return None
+    
+    def validar_preenchimento_incorreto(self):
+
+        return None

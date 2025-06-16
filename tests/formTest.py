@@ -12,12 +12,13 @@ class FormTest:
         self.data_provider = DataProvider()
         self.dados = []
         self.cmd.acessaSite(url_app)
+        self.runner()
 
     def runner(self):
         Logger().info_log(f"Executando classe de teste: {self.__class__.__name__}")
 
         self.test_preencher_formulario_corretamente()
-        self.campos_obrigatorios()
+        self.test_campos_obrigatorios()
 
     def test_preencher_formulario_corretamente(self):
         nome = self.test_preencher_formulario_corretamente.__qualname__
@@ -73,7 +74,14 @@ class FormTest:
         formValidator(self.cmd).validar_preenchimento_formulario(self.dados_tabela)
         self.cmd.atualizar_pagina()
 
-    def campos_obrigatorios(self):
+    def test_campos_obrigatorios(self):
         self.cmd.buscar_elemento('submit', 'id').clicar()
 
         Logger().info_log(self.cmd.buscar_elemento(f"firstName", "id").is_required() )
+
+
+    def test_preenchimento_incorreto(self):
+        self.cmd.buscar_elemento(f"firstName", "id").preencher(f"123")
+        self.cmd.buscar_elemento(f"lastName", "id").preencher(f"456")
+
+        return None
