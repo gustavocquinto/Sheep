@@ -24,7 +24,6 @@ class HTML():
         return None
 
     def gera_e_insere_relatorio(self, asserts, nome_do_test="_formTest"):
-        from core.asserts_controller import Asserts
         func = open("relatorio.html", "a")
         html_base_relatorio = f"""
                                     <div class="mb-6">
