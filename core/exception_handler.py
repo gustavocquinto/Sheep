@@ -31,6 +31,10 @@ class ExceptionHandler():
                 Logger.error_log(f"Não foi possivel continuar. Verifique se a janela do navegador foi fechada. Função: {nome_funcao}")
                 exit()
 
+            except WebDriverException as e:
+                Logger.error_log(f"Não foi possivel continuar. Verifique as configurações do navegador, e diretório para o driver.")
+                exit()    
+
             except AttributeError as e:
                 Logger.error_log(f"Não foi possível encontrar o atributo informado Função: {nome_funcao}")
                 print(e)

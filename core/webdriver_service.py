@@ -4,10 +4,12 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
+from core.autoload import ExceptionHandler
 
 
 class WebDriverService():
 
+    @ExceptionHandler.trata_erros
     def __init__(self):
         serviceDriver_path = Service(driver_path)
 
