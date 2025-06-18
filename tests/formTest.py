@@ -75,10 +75,8 @@ class FormTest:
         self.cmd.atualizar_pagina()
 
     def test_campos_obrigatorios(self):
-        self.cmd.buscar_elemento('submit', 'id').clicar()
-
-        Logger().info_log(self.cmd.buscar_elemento(f"firstName", "id").is_required() )
-
+        
+        formValidator(self.cmd).validar_campos_obrigatorios()
 
     def test_preenchimento_incorreto(self):
         self.cmd.buscar_elemento(f"firstName", "id").preencher(f"123")

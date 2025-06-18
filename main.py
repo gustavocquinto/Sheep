@@ -6,7 +6,6 @@ def main():
     HTML().html_header()
 
     formTest = FormTest()
-    formTest.runner()
 
 
     HTML().fecha_html()
