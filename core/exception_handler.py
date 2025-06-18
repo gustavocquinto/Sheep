@@ -32,7 +32,7 @@ class ExceptionHandler():
                 exit()
 
             except WebDriverException as e:
-                Logger.error_log(f"Não foi possivel continuar. Verifique as configurações do navegador, e diretório para o driver.")
+                Logger.error_log(f"Não foi possivel continuar. Verifique as configurações do navegador, ou diretório para o driver em 'config/settings.py'.")
                 exit()    
 
             except AttributeError as e:
