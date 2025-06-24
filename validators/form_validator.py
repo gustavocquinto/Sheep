@@ -1,6 +1,5 @@
 
 from core.autoload import AutomationController
-from utils.classes.pessoa_class import Pessoa
 from selenium.webdriver.common.by import By
 from core.asserts_controller import Asserts
 
