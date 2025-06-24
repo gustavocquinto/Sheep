@@ -11,11 +11,10 @@ class FormTest:
         self.cmd = AutomationController()
         self.data_provider = DataProvider()
         self.dados = []
-        self.cmd.acessaSite(url_app)
 
     def runner(self):
         Logger().info_log(f"Executando classe de teste: {self.__class__.__name__}")
-
+        self.cmd.acessaSite("https://demoqa.com/automation-practice-form")
         self.test_preencher_formulario_corretamente()
         self.campos_obrigatorios()
 
