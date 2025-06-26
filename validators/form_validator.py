@@ -17,7 +17,7 @@ class formValidator():
         linhas_tabela = tabela_body.buscar_elementos('tr', 'tag_name').elementos
 
         for i, linha in enumerate(linhas_tabela):
-            colunas = linha.find_elements(By.TAG_NAME, 'td')
+            colunas = linha.find_elements(By.TAG_NAME, 'td' )
             coluna = colunas[1].text
             self.asserts.checar(dados[i], coluna)
 
